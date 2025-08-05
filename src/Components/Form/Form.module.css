@@ -1,0 +1,99 @@
+.wrapper {
+
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(227, 215, 233);
+    width: 30vw;
+    min-height: 50vh;
+    border-radius: 5px;
+
+}
+
+.formTitle {
+    padding-top: 20px;
+}
+
+.sentBlock {
+    color: blue;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.labelText {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 17px;
+    padding: 5px 0 2px 0;
+}
+
+.input {
+    padding-left: 5px;
+    width: 22vw;
+    height: 5vh;
+}
+
+.input::placeholder {
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+    color: rgb(116, 113, 113);
+}
+
+.textErrorWrapper {
+    text-align: center;
+    padding: 5px 0 0 10px;
+}
+
+.textError {
+    color: red;
+}
+
+.textArea {
+    padding: 5px 0 0 5px;
+    width: 22vw;
+    height: 15vh;
+}
+
+.textArea::placeholder {
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+    color: rgb(116, 113, 113);
+}
+
+.descriptionWrapper,
+.labelWrapper {
+    padding: 0 5px 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnWrapper {
+    padding: 20px;
+}
+
+.btn {
+    padding: 5px 8px 5px 8px;
+    border: 2px solid rgb(141, 100, 179);
+    background-color: rgb(176, 121, 227);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    border: 2px solid rgb(93, 64, 120);
+    background-color: rgb(135, 30, 233);
+}

@@ -1,39 +1,18 @@
-  .descr_wrapper {
+.wrapper {
+   margin-bottom: 5px;
+   display: flex;
+   justify-content: center;
+   gap: 3px;
+   cursor: pointer;
 
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 4.5em;
-    line-height: 1.5em;
-  }
+}
 
-  .posts {
-    width: 900px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .post {
-    border: 1px solid black;
-    width: 400px;
-    padding: 5px
-  }
-
-  .image {
-    width: 300px;
-    height: 300px;
-  }
-
-  .btn {
-    padding: 7px;
-    background-color: blue;
-    border: none;
-    cursor: pointer;
-  }
-
-  .btn:not(:last-child) {
-    margin-right: 3px;
-  }
+.pageNumWrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 30px;
+   height: 30px;
+   border: 1px solid rgb(23, 23, 146);
+   border-radius: 3px;
+}

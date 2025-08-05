@@ -24,8 +24,6 @@ interface Posts {
     height: number
 }
 
-
-
 export interface postsState {
     posts: Posts[],
     page: number,
@@ -40,6 +38,7 @@ export enum PostsActionTypes {
     FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS',
     FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',
     SET_PAGES = 'SET_PAGES',
+    DELETE_POST = 'DELETE_POST',
 }
 
 interface FetchPostsAction {
@@ -61,7 +60,18 @@ interface SetPostsPage {
     payload: number
 }
 
+interface DeletePostAction {
+    type: PostsActionTypes.DELETE_POST;
+    payload: string;
+}
+
 export type PostsAction = FetchPostsAction
     | FetchPostsSuccessAction
     | FetchPostsErrorAction
-    | SetPostsPage;
+    | SetPostsPage
+    | DeletePostAction;
+
+export interface ComponentProps {
+    posts: Posts[];
+    loading: boolean;
+}

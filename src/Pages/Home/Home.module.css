@@ -1,0 +1,47 @@
+ .homeContainer {
+    min-height: 95vh;
+    background: #EEAECA;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+ }
+
+ .upperDetails,
+ .bottonDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+ }
+
+ .bottonDetails {
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+ }
+
+ .title {
+    text-align: center;
+    margin: 20px 0 20px 0;
+ }
+
+ .textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+ }
+
+ .textWrapper {
+    width: 800px;
+ }
+
+ .text {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-indent: 20px;
+    text-align: justify;
+ }

@@ -1,0 +1,20 @@
+.container {
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    min-height: 95vh;
+}
+
+.btnWrapper {
+   padding: 10px 0 10px 10px;
+}
+
+.btn {
+    padding: 5px 8px 5px 8px;
+    border: 2px solid rgb(141, 100, 179);
+    background-color: rgb(176, 121, 227);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+ border: 2px solid rgb(93, 64, 120);
+}

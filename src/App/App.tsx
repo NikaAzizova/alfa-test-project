@@ -7,6 +7,7 @@ import Header from '../Components/Header/Header';
 import Products from '../Pages/Products/Products';
 import ProductDetails from '../Pages/ProductDetails/ProductDetails';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
+import Home from '../Pages/Home/Home';
 
 function App() {
 
@@ -15,8 +16,9 @@ function App() {
         <div className={styles.container}>
             <Header />
             <Routes>
-                <Route path='/' element={<Products />} />
-                <Route path='/products/:id' element={<ProductDetails />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/products' element={<Products />} />
+                <Route path='/image/:id' element={<ProductDetails />} />
                 <Route path='/createProduct' element={<CreateProduct />} />
                 <Route path='*' element={<ErrorPage />} />
             </Routes>

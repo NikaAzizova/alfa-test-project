@@ -1,8 +1,9 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { PostsAction, PostsActionTypes } from "../Types/posts";
 
-
-export const fetchPosts = (page = 1, limit = 10) => {
+///api/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${page}&limit=${limit}
+//https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${page}&limit=${limit}
+export const fetchPosts = (page:number, limit = 10) => {
     return async (dispatch: Dispatch<PostsAction>) => {
         try {
             dispatch({ type: PostsActionTypes.FETCH_POSTS })
@@ -16,15 +17,15 @@ export const fetchPosts = (page = 1, limit = 10) => {
                 headers: headers,
                 redirect: 'follow' as RequestRedirect,
             };
-            const response = await fetch(`https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${page}&limit=${limit}`, requestOptions);
+            const response = await fetch(`/api/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${page}&limit=${limit}`, requestOptions);
             const data = await response.json();
             console.log(data);
-           
+
            dispatch({
             type: PostsActionTypes.FETCH_POSTS_SUCCESS,
             payload: data,
            })
-           
+
         }
         catch (error) {
             dispatch({
@@ -32,9 +33,6 @@ export const fetchPosts = (page = 1, limit = 10) => {
                 payload: 'Произошла ошибка при загрузке постов: ' + error
             })
             console.log(error);
-            
-          
-            
         }
     }
 }
@@ -42,5 +40,11 @@ export const fetchPosts = (page = 1, limit = 10) => {
 export function setPostsPage(page: number):PostsAction {
 return {type: PostsActionTypes.SET_PAGES,
     payload: page,
-}
-}
+}}
+
+
+export const deletePost = (id: string) => {
+  return (dispatch: Dispatch<PostsAction>) => {
+    dispatch({ type: PostsActionTypes.DELETE_POST, payload: id });
+  };
+};

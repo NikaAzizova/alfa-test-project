@@ -20,6 +20,11 @@ export const postsReducer = (state = initialState, action: PostsAction): postsSt
             return { ...state, loading: false, error: action.payload }
         case PostsActionTypes.SET_PAGES:
             return { ...state, page: action.payload }
+        case PostsActionTypes.DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(post => post.id !== action.payload)
+            };
         default:
             return state
     }
