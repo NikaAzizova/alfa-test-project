@@ -8,6 +8,7 @@ const Form: React.FC = () => {
 
     const [formCard, setFormCard] = useState<newCardProps>(
         {
+            url: '',
             name: '',
             origin: '',
             adaptability: '',
@@ -16,6 +17,7 @@ const Form: React.FC = () => {
     );
 
     const [error, setError] = useState<ErrorData>({
+        url: false,
         name: false,
         origin: false,
         adaptability: false,
@@ -23,9 +25,10 @@ const Form: React.FC = () => {
     });
 
     const [errorText, setErrorText] = useState<newCardProps>({
+        url: 'Please, add correct link',
         name: 'Please, add correct information (latin latters)',
         origin: 'Please, add correct information (latin latters)',
-        adaptability: 'Please, add correct information (latin latters)',
+        adaptability: 'Please, add number',
         description: 'Please, add correct information (latin latters)',
     });
 
@@ -35,9 +38,12 @@ const Form: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Обработка данных формы
-        const invalidCharsReg: RegExp = /[А-Яа-яЁё0-9]/;
+        const invalidCharsReg: RegExp = /[A-Za-z]/;
+        const invalidNumberReg: RegExp = /^[1-9]\d*$/;
+        const urlRegExp = /^https?:\/\/[^\s/$.?#].[^\s]*$/;
 
         const newErrors: ErrorData = {
+            url: false,
             name: false,
             origin: false,
             adaptability: false,
@@ -45,38 +51,72 @@ const Form: React.FC = () => {
         };
 
         // Проверка на пустые поля
-        if (!formCard.name.trim()) {
+        if (!formCard.url.trim()) {
+            newErrors.url = true;
+        } else if (!urlRegExp.test(formCard.url)) {
+            newErrors.url = true;
+        }
+
+        // if (!formCard.url.trim()) {
+        //    newErrors.url = true;
+        // }
+
+        // Проверка имени
+        if (!formCard.name.trim() || !invalidCharsReg.test(formCard.name)) {
             newErrors.name = true;
         }
 
-        if (!formCard.origin.trim()) {
+        //if (!formCard.name.trim()) {
+        //   newErrors.name = true;
+        // }
+
+        if (!formCard.origin.trim() || !invalidCharsReg.test(formCard.origin)) {
             newErrors.origin = true;
         }
 
-        if (!formCard.adaptability.trim()) {
+        //if (!formCard.origin.trim()) {
+        //  newErrors.origin = true;
+        // }
+
+        if (!formCard.adaptability.trim() || !invalidNumberReg.test(formCard.adaptability)) {
             newErrors.adaptability = true;
         }
 
-        if (!formCard.description.trim()) {
+
+        //if (!formCard.adaptability.trim()) {
+        //    newErrors.adaptability = true;
+        // }
+
+if (!formCard.description.trim() || !invalidCharsReg.test(formCard.description)) {
             newErrors.description = true;
         }
+
+        //if (!formCard.description.trim()) {
+         //   newErrors.description = true;
+        //}
+        /*
         //проверка соответствуют ли вводимые данные регулярному выражению
-        if (invalidCharsReg.test(formCard.name)) {
+        if (!urlRegExp.test(formCard.url)) {
+            newErrors.url = true;
+        }
+
+
+        if (!invalidCharsReg.test(formCard.name)) {
             newErrors.name = true;
         }
 
-        if (invalidCharsReg.test(formCard.origin)) {
+        if (!invalidCharsReg.test(formCard.origin)) {
             newErrors.origin = true;
 
         }
 
-        if (invalidCharsReg.test(formCard.adaptability)) {
+        if (!invalidNumberReg.test(formCard.adaptability)) {
             newErrors.adaptability = true;
         }
 
-        if (invalidCharsReg.test(formCard.description)) {
+        if (!invalidCharsReg.test(formCard.description)) {
             newErrors.description = true;
-        }
+        }*/
 
         setError(newErrors);
         // Проверка, есть ли ошибки
@@ -92,6 +132,7 @@ const Form: React.FC = () => {
 
         //очищаем форму после отправки
         const initialFormState: newCardProps = {
+            url: '',
             name: '',
             origin: '',
             adaptability: '',
@@ -102,12 +143,32 @@ const Form: React.FC = () => {
     };
 
     return (
-        <div className={styles.wrapper}>
+        <div>
             <form className={styles.formContainer}>
                 <h3 className={styles.formTitle}>Create a card:</h3>
                 {sendForm &&
                     <div className={styles.sentBlock}>The information was sent successfully.</div>
                 }
+                {/*beginning*/}
+
+                <div className={styles.inputWrapper}>
+                    <div className={styles.labelWrapper}>
+                        <label className={styles.labelText}>Link of a picture:</label>
+                        {error.url &&
+                            <div className={styles.textErrorWrapper}>
+                                <p className={styles.textError}>{errorText.url}</p>
+                            </div>
+                        }
+                    </div>
+                    <input
+                        value={formCard.url}
+                        onChange={(e) => setFormCard({ ...formCard, url: e.target.value })}
+                        className={styles.input}
+                        type="url"
+                        placeholder="https://www.link.com" />
+
+                </div>
+                {/*end*/}
                 <div className={styles.inputWrapper}>
                     <div className={styles.labelWrapper}>
                         <label className={styles.labelText}>Name:</label>

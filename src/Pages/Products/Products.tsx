@@ -11,10 +11,12 @@ export default function Products() {
     return (
         <div className={styles.container}>
             <div className={styles.btnWrapper}>
-            <button
-                onClick={() => navigate('/')}
-                className={styles.btn}>Home page</button>
-               </div>
+                <button
+                    onClick={() => navigate('/')}
+                    className={styles.btn}>
+                    Home page
+                </button>
+            </div>
             <div className={styles.title}>
                 <h1>All Cards</h1>
             </div>

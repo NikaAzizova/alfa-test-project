@@ -1,4 +1,5 @@
 export interface newCardProps {
+    url: string,
     name: string,
     origin: string,
     adaptability: string,
@@ -6,6 +7,7 @@ export interface newCardProps {
 }
 
 export interface ErrorData {
+    url: boolean,
     name: boolean,
     origin: boolean,
     adaptability: boolean,

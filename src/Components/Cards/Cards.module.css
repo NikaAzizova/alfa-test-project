@@ -26,6 +26,39 @@
     flex-wrap: wrap;
   }
 
+  .chosenBtnContainer {
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .choosenBtnWrapper {
+    width: 165px;
+    display: flex;
+    justify-content: center;
+
+
+  }
+
+  .chosenBtn {
+    width: 165px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    border: 2px solid rgb(141, 100, 179);
+    background-color: rgb(176, 121, 227);
+    border-radius: 5px;
+
+  }
+
+  .choosenBtnWrapper:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  .chosenBtn:hover {
+    border: 2px solid rgb(93, 64, 120);
+  }
+
   .crossWrapper {
     display: flex;
     justify-content: end;
@@ -35,7 +68,7 @@
   .post {
     margin: 10px;
     padding: 5px;
-    max-width: 250px;
+    width: 300px;
     border: 1px solid black;
     border-radius: 5px;
     background-color: white;
@@ -54,14 +87,21 @@
   }
 
   .image {
-    width: 200px;
+    width: 250px;
     height: 200px;
   }
 
+
+
   .descriptionWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     font-family: 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 16px;
+
   }
 
   .subtitle {
