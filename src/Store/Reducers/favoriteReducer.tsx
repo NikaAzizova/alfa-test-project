@@ -2,7 +2,7 @@
 
 
 interface FavoritesState {
-    favorites: string[]; //массив id
+    favorites: string[];
 }
 
 const initialState: FavoritesState = {

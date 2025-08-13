@@ -6,7 +6,6 @@ export const fetchCardById = (id: string) => async (dispatch: Dispatch<CardActio
 
     try {
     const response = await fetch(`https://api.thecatapi.com/v1/images/${id}`);
-    //https://api.thecatapi.com/v1/images/L7z8fLkoJ
     const data = await response.json()
 
     dispatch({type: CardActionType.FETCH_CARD_SUCCESS, payload: data})

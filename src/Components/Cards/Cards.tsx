@@ -68,11 +68,8 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                         </button>
                     </div>
                 )}
-
-
-
             </div>
-
+            
             {loading && (
                 <div className={styles.loaderWrapper}>
                     <div className={styles.loader}></div>

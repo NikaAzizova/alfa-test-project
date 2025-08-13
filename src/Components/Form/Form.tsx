@@ -33,11 +33,12 @@ const Form: React.FC = () => {
     });
 
     const [sendForm, setSendForm] = useState<boolean>(false);
+     console.log(setErrorText);
 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Обработка данных формы
+
         const invalidCharsReg: RegExp = /[A-Za-z]/;
         const invalidNumberReg: RegExp = /^[1-9]\d*$/;
         const urlRegExp = /^https?:\/\/[^\s/$.?#].[^\s]*$/;
@@ -50,87 +51,38 @@ const Form: React.FC = () => {
             description: false,
         };
 
-        // Проверка на пустые поля
         if (!formCard.url.trim()) {
             newErrors.url = true;
         } else if (!urlRegExp.test(formCard.url)) {
             newErrors.url = true;
         }
 
-        // if (!formCard.url.trim()) {
-        //    newErrors.url = true;
-        // }
-
-        // Проверка имени
         if (!formCard.name.trim() || !invalidCharsReg.test(formCard.name)) {
             newErrors.name = true;
         }
-
-        //if (!formCard.name.trim()) {
-        //   newErrors.name = true;
-        // }
 
         if (!formCard.origin.trim() || !invalidCharsReg.test(formCard.origin)) {
             newErrors.origin = true;
         }
 
-        //if (!formCard.origin.trim()) {
-        //  newErrors.origin = true;
-        // }
-
         if (!formCard.adaptability.trim() || !invalidNumberReg.test(formCard.adaptability)) {
             newErrors.adaptability = true;
         }
 
-
-        //if (!formCard.adaptability.trim()) {
-        //    newErrors.adaptability = true;
-        // }
-
-if (!formCard.description.trim() || !invalidCharsReg.test(formCard.description)) {
+        if (!formCard.description.trim() || !invalidCharsReg.test(formCard.description)) {
             newErrors.description = true;
         }
-
-        //if (!formCard.description.trim()) {
-         //   newErrors.description = true;
-        //}
-        /*
-        //проверка соответствуют ли вводимые данные регулярному выражению
-        if (!urlRegExp.test(formCard.url)) {
-            newErrors.url = true;
-        }
-
-
-        if (!invalidCharsReg.test(formCard.name)) {
-            newErrors.name = true;
-        }
-
-        if (!invalidCharsReg.test(formCard.origin)) {
-            newErrors.origin = true;
-
-        }
-
-        if (!invalidNumberReg.test(formCard.adaptability)) {
-            newErrors.adaptability = true;
-        }
-
-        if (!invalidCharsReg.test(formCard.description)) {
-            newErrors.description = true;
-        }*/
 
         setError(newErrors);
-        // Проверка, есть ли ошибки
         const hasError = Object.values(newErrors).some(error => error);
 
         if (hasError) {
-            // Есть ошибки — не очищаем и не отправляем
             return;
         }
 
         console.log('Форма успешно отправлена:', formCard);
         setSendForm(true);
 
-        //очищаем форму после отправки
         const initialFormState: newCardProps = {
             url: '',
             name: '',
@@ -149,8 +101,6 @@ if (!formCard.description.trim() || !invalidCharsReg.test(formCard.description))
                 {sendForm &&
                     <div className={styles.sentBlock}>The information was sent successfully.</div>
                 }
-                {/*beginning*/}
-
                 <div className={styles.inputWrapper}>
                     <div className={styles.labelWrapper}>
                         <label className={styles.labelText}>Link of a picture:</label>
@@ -168,7 +118,6 @@ if (!formCard.description.trim() || !invalidCharsReg.test(formCard.description))
                         placeholder="https://www.link.com" />
 
                 </div>
-                {/*end*/}
                 <div className={styles.inputWrapper}>
                     <div className={styles.labelWrapper}>
                         <label className={styles.labelText}>Name:</label>
