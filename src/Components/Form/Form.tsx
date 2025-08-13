@@ -9,10 +9,16 @@ const Form: React.FC = () => {
     const [formCard, setFormCard] = useState<newCardProps>(
         {
             url: '',
-            name: '',
-            origin: '',
-            adaptability: '',
-            description: '',
+            id: '1',
+            breeds: [
+                {
+                    name: '',
+                    origin: '',
+                    adaptability: '',
+                    description: '',
+                }
+            ]
+
         }
     );
 
@@ -25,19 +31,27 @@ const Form: React.FC = () => {
     });
 
     const [errorText, setErrorText] = useState<newCardProps>({
+        id: '',
         url: 'Please, add correct link',
-        name: 'Please, add correct information (latin latters)',
-        origin: 'Please, add correct information (latin latters)',
-        adaptability: 'Please, add number',
-        description: 'Please, add correct information (latin latters)',
+        breeds: [{
+            name: 'Please, add correct information (latin latters)',
+            origin: 'Please, add correct information (latin latters)',
+            adaptability: 'Please, add number',
+            description: 'Please, add correct information (latin latters)',
+        }]
+
     });
 
     const [sendForm, setSendForm] = useState<boolean>(false);
-     console.log(setErrorText);
-
+    console.log(setErrorText);
+    const [cardId, setCardId] = useState<number>(1);
 
     const handleSubmit = (e: React.FormEvent) => {
+
         e.preventDefault();
+        const newId = cardId + 1; // число
+        setCardId(newId);
+        const stringId = newId.toString();
 
         const invalidCharsReg: RegExp = /[A-Za-z]/;
         const invalidNumberReg: RegExp = /^[1-9]\d*$/;
@@ -57,19 +71,19 @@ const Form: React.FC = () => {
             newErrors.url = true;
         }
 
-        if (!formCard.name.trim() || !invalidCharsReg.test(formCard.name)) {
+        if (!formCard.breeds[0].name.trim() || !invalidCharsReg.test(formCard.breeds[0].name)) {
             newErrors.name = true;
         }
 
-        if (!formCard.origin.trim() || !invalidCharsReg.test(formCard.origin)) {
+        if (!formCard.breeds[0].origin.trim() || !invalidCharsReg.test(formCard.breeds[0].origin)) {
             newErrors.origin = true;
         }
 
-        if (!formCard.adaptability.trim() || !invalidNumberReg.test(formCard.adaptability)) {
+        if (!formCard.breeds[0].adaptability.trim() || !invalidNumberReg.test(formCard.breeds[0].adaptability)) {
             newErrors.adaptability = true;
         }
 
-        if (!formCard.description.trim() || !invalidCharsReg.test(formCard.description)) {
+        if (!formCard.breeds[0].description.trim() || !invalidCharsReg.test(formCard.breeds[0].description)) {
             newErrors.description = true;
         }
 
@@ -80,15 +94,21 @@ const Form: React.FC = () => {
             return;
         }
 
-        console.log('Форма успешно отправлена:', formCard);
+        const formDataWithId = { ...formCard, id: stringId };
+        console.log('Форма успешно отправлена:', formDataWithId);
         setSendForm(true);
 
         const initialFormState: newCardProps = {
             url: '',
-            name: '',
-            origin: '',
-            adaptability: '',
-            description: '',
+            id: '',
+            breeds: [
+                {
+                    name: '',
+                    origin: '',
+                    adaptability: '',
+                    description: '',
+                }
+            ]
         };
         setFormCard(initialFormState);
 
@@ -123,13 +143,21 @@ const Form: React.FC = () => {
                         <label className={styles.labelText}>Name:</label>
                         {error.name &&
                             <div className={styles.textErrorWrapper}>
-                                <p className={styles.textError}>{errorText.name}</p>
+                                <p className={styles.textError}>{errorText.breeds[0].name}</p>
                             </div>
                         }
                     </div>
                     <input
-                        value={formCard.name}
-                        onChange={(e) => setFormCard({ ...formCard, name: e.target.value })}
+                        value={formCard.breeds[0].name}
+                        onChange={(e) => setFormCard({
+                            ...formCard,
+                            breeds: [
+                                {
+                                    ...formCard.breeds[0],
+                                    name: e.target.value
+                                }
+                            ]
+                        })}
                         className={styles.input}
                         type="text"
                         placeholder="Enter name" />
@@ -140,13 +168,22 @@ const Form: React.FC = () => {
                         <label className={styles.labelText}>Origin:</label>
                         {error.origin &&
                             <div className={styles.textErrorWrapper}>
-                                <p className={styles.textError}>{errorText.origin}</p>
+                                <p className={styles.textError}>{errorText.breeds[0].origin}</p>
                             </div>
                         }
                     </div>
                     <input
-                        onChange={(e) => setFormCard({ ...formCard, origin: e.target.value })}
-                        value={formCard.origin}
+                        onChange={(e) => setFormCard({
+                            ...formCard,
+                            breeds: [
+                                {
+                                    ...formCard.breeds[0],
+                                    origin: e.target.value
+                                }
+                            ]
+
+                        })}
+                        value={formCard.breeds[0].origin}
                         className={styles.input}
                         type="text"
                         placeholder="Enter origin" />
@@ -157,13 +194,22 @@ const Form: React.FC = () => {
 
                         {error.adaptability &&
                             <div className={styles.textErrorWrapper}>
-                                <p className={styles.textError}>{errorText.adaptability}</p>
+                                <p className={styles.textError}>{errorText.breeds[0].adaptability}</p>
                             </div>
                         }
                     </div>
                     <input
-                        onChange={(e) => setFormCard({ ...formCard, adaptability: e.target.value })}
-                        value={formCard.adaptability}
+                        onChange={(e) => setFormCard({
+                            ...formCard,
+                            breeds: [
+                                {
+                                    ...formCard.breeds[0],
+                                    adaptability: e.target.value
+                                }
+                            ]
+
+                        })}
+                        value={formCard.breeds[0].adaptability}
                         className={styles.input}
                         type="text"
                         placeholder="Enter adaptability" />
@@ -173,13 +219,21 @@ const Form: React.FC = () => {
                         <label className={styles.labelText}>Description:</label>
                         {error.description &&
                             <div className={styles.textErrorWrapper}>
-                                <p className={styles.textError}>{errorText.description}</p>
+                                <p className={styles.textError}>{errorText.breeds[0].description}</p>
                             </div>
                         }
                     </div>
                     <textarea
-                        onChange={(e) => setFormCard({ ...formCard, description: e.target.value })}
-                        value={formCard.description}
+                        onChange={(e) => setFormCard({
+                            ...formCard,
+                            breeds: [
+                                {
+                                    ...formCard.breeds[0],
+                                    description: e.target.value
+                                }
+                            ]
+                        })}
+                        value={formCard.breeds[0].description}
                         className={styles.textArea}
                         rows={7}
                         cols={66}
