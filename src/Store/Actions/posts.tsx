@@ -17,7 +17,7 @@ export const fetchPosts = (page: number, limit = 10) => {
                 headers: headers,
                 redirect: 'follow' as RequestRedirect,
             };
-            const response = await fetch(`/api/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${page}&limit=${limit}`, requestOptions);
+            const response = await fetch(`https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${page}&limit=${limit}`, requestOptions);
             const data = await response.json();
 
             dispatch({
