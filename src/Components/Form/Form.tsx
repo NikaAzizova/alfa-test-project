@@ -1,17 +1,24 @@
 import React from "react";
 import styles from './Form.module.css'
 import { useState } from "react";
-import { newCardProps, ErrorData } from "../../Store/Types/form";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../Store";
+import { newPostType, ErrorData } from "../../Store/Types/form";
+import { addPost } from "../../Store/Actions/posts";
 
 
 const Form: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>();
 
-    const [formCard, setFormCard] = useState<newCardProps>(
+    const [formCard, setFormCard] = useState<newPostType>(
         {
             url: '',
-            id: '1',
+            id: Date.now().toString(),
+            width: 400,
+            height: 400,
             breeds: [
                 {
+                    id: Date.now().toString(),
                     name: '',
                     origin: '',
                     adaptability: '',
@@ -30,10 +37,13 @@ const Form: React.FC = () => {
         description: false
     });
 
-    const [errorText, setErrorText] = useState<newCardProps>({
+    const [errorText, setErrorText] = useState<newPostType>({
         id: '',
         url: 'Please, add correct link',
+        width: 400,
+        height: 400,
         breeds: [{
+            id: '',
             name: 'Please, add correct information (latin latters)',
             origin: 'Please, add correct information (latin latters)',
             adaptability: 'Please, add number',
@@ -44,14 +54,9 @@ const Form: React.FC = () => {
 
     const [sendForm, setSendForm] = useState<boolean>(false);
     console.log(setErrorText);
-    const [cardId, setCardId] = useState<number>(1);
 
     const handleSubmit = (e: React.FormEvent) => {
-
         e.preventDefault();
-        const newId = cardId + 1; // число
-        setCardId(newId);
-        const stringId = newId.toString();
 
         const invalidCharsReg: RegExp = /[A-Za-z]/;
         const invalidNumberReg: RegExp = /^[1-9]\d*$/;
@@ -94,15 +99,18 @@ const Form: React.FC = () => {
             return;
         }
 
-        const formDataWithId = { ...formCard, id: stringId };
-        console.log('Форма успешно отправлена:', formDataWithId);
+        console.log('Форма успешно отправлена:', formCard);
+        dispatch(addPost(formCard))
         setSendForm(true);
 
-        const initialFormState: newCardProps = {
+        const initialFormState: newPostType = {
             url: '',
             id: '',
+            width: 400,
+            height: 400,
             breeds: [
                 {
+                    id: '',
                     name: '',
                     origin: '',
                     adaptability: '',
@@ -194,7 +202,9 @@ const Form: React.FC = () => {
 
                         {error.adaptability &&
                             <div className={styles.textErrorWrapper}>
-                                <p className={styles.textError}>{errorText.breeds[0].adaptability}</p>
+                                <p className={styles.textError}>
+                                    {errorText.breeds[0].adaptability}
+                                </p>
                             </div>
                         }
                     </div>
@@ -219,7 +229,9 @@ const Form: React.FC = () => {
                         <label className={styles.labelText}>Description:</label>
                         {error.description &&
                             <div className={styles.textErrorWrapper}>
-                                <p className={styles.textError}>{errorText.breeds[0].description}</p>
+                                <p className={styles.textError}>
+                                    {errorText.breeds[0].description}
+                                </p>
                             </div>
                         }
                     </div>
@@ -236,7 +248,7 @@ const Form: React.FC = () => {
                         value={formCard.breeds[0].description}
                         className={styles.textArea}
                         rows={7}
-                        cols={66}
+                        cols={35}
                         placeholder="Enter a description..."
                     />
                 </div>

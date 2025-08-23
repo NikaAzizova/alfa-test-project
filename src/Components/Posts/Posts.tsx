@@ -9,9 +9,6 @@ import { setPostsPage } from "../../Store/Actions/posts";
 import styles from './Posts.module.css'
 
 
-
-
-
 const Posts: React.FC = () => {
 
     const { posts, loading, error, page } = postsTypedSelector(state => state.posts);

@@ -19,7 +19,6 @@ const CreateProduct: React.FC = () => {
             <div className={styles.formWrapper}>
                 <Form />
             </div>
-
         </div>
     )
 }

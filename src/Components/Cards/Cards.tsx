@@ -17,22 +17,16 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
     const FavoritesIDs = useSelector((state: RootState) => state.favorites.favorites);
     const [chosen, setChosen] = useState<boolean>(false);
 
-    console.log(posts);
-
     const handleClick = (id: string) => {
         navigate(`/image/${id}`);
     };
 
     const clickStopPropogation = (event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
-        console.log(FavoritesIDs);
-
     }
-
 
     function handleDelete(id: string) {
         dispatch(deletePost(id));
-
     }
 
     function handleChosen() {
@@ -50,7 +44,6 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
 
     return (
         <div className={styles.posts}>
-
             <div
                 className={styles.chosenBtnContainer}>
                 {chosen ? (<div className={styles.choosenBtnWrapper}>
@@ -69,13 +62,11 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                     </div>
                 )}
             </div>
-            
             {loading && (
                 <div className={styles.loaderWrapper}>
                     <div className={styles.loader}></div>
                 </div>
             )}
-
             <div className={styles.postWrapper}>
                 {chosen ? (
                     posts.filter(item => FavoritesIDs.includes(item.id)).map(post => (
@@ -123,23 +114,18 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                                                 {breed.adaptability}
                                             </div>
                                             <div className={styles.descr_wrapper}>
-                                                <div>
-                                                    <span className={styles.subtitle}>Description: </span>
-                                                    {breed.description}
-                                                </div>
+                                                <span className={styles.subtitle}>Description: </span>
+                                                {breed.description}
                                             </div>
                                         </div>
                                     </div>
                                 )}</div>
-
                                 <div
                                     className={styles.likesWrapper}>
                                     <div
                                         onClick={(event) => {
                                             clickStopPropogation(event);
                                             dispatch(toggleFavorite(post.id));
-
-
                                         }
                                         }
                                     >
@@ -218,13 +204,10 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                                         onClick={(event) => {
                                             clickStopPropogation(event);
                                             dispatch(toggleFavorite(post.id));
-
-
                                         }
                                         }
                                     >
                                         {FavoritesIDs.includes(post.id) ?
-
                                             <img
                                                 className={styles.whiteHeartImg}
                                                 src="/assets/images/red_heart.png" alt="red heart" />
@@ -237,75 +220,11 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                                 </div>
                             </div>
                         )
-
                     )
                 }
-
             </div>
         </div>
     )
 }
 
 export default Cards;
-
-{/*post.id === likedId ?*/ }
-
-{/*
-     <div onClick={() => handleClick(post.id)}
-                                className={styles.post} key={post.id}
-                            >
-                                <div
-                                    className={styles.crossWrapper}
-                                >
-                                    <img
-                                        onClick={(event) => {
-                                            handleDelete(post.id);
-                                            clickStopPropogation(event)
-                                        }}
-                                        width="25"
-                                        height="25"
-                                        src="https://img.icons8.com/emoji/48/cross-mark-button-emoji.png"
-                                        alt="cross-mark-button-emoji"
-
-                                    />
-                                </div>
-                                <div className={styles.imgWrapper}>
-                                    <img
-                                        src={post.url}
-                                        alt="photo"
-                                        className={styles.image} />
-                                </div>
-
-
-                                <div>{post.breeds.map(breed =>
-                                    <div
-                                        className={styles.descriptionWrapper}
-                                        key={breed.id}>
-                                        <div>
-                                            <span className={styles.subtitle}>Name: </span>
-                                            {breed.name}
-                                        </div>
-                                        <div>
-                                            <span className={styles.subtitle}>Origin: </span>
-                                            {breed.origin}
-                                        </div>
-                                        <div>
-                                            <span className={styles.subtitle}>Adaptability: </span>
-                                            {breed.adaptability}
-                                        </div>
-                                        <div className={styles.descr_wrapper}>
-                                            <div>
-                                                <span className={styles.subtitle}>Description: </span>
-                                                {breed.description}
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}</div>
-                                <div
-                                    className={styles.likesWrapper}>
-                                    <div>
-                                    </div>
-                                </div>
-                            </div>
-    
-    */}

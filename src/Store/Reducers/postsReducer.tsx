@@ -25,6 +25,8 @@ export const postsReducer = (state = initialState, action: PostsAction): postsSt
                 ...state,
                 posts: state.posts.filter(post => post.id !== action.payload)
             };
+        case PostsActionTypes.ADD_POST:
+            return { ...state, posts: [action.payload, ...state.posts] }
         default:
             return state
     }

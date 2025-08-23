@@ -1,12 +1,13 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { PostsAction, PostsActionTypes } from "../Types/posts";
+import { newPostType } from "../Types/form";
 
 
-export const fetchPosts = (page:number, limit = 10) => {
+export const fetchPosts = (page: number, limit = 10) => {
     return async (dispatch: Dispatch<PostsAction>) => {
         try {
             dispatch({ type: PostsActionTypes.FETCH_POSTS })
-           const headers = new Headers({
+            const headers = new Headers({
                 "Content-Type": "application/json",
                 "x-api-key": "DEMO-API-KEY"
             });
@@ -18,12 +19,11 @@ export const fetchPosts = (page:number, limit = 10) => {
             };
             const response = await fetch(`/api/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${page}&limit=${limit}`, requestOptions);
             const data = await response.json();
-            console.log(data);
 
-           dispatch({
-            type: PostsActionTypes.FETCH_POSTS_SUCCESS,
-            payload: data,
-           })
+            dispatch({
+                type: PostsActionTypes.FETCH_POSTS_SUCCESS,
+                payload: data,
+            })
 
         }
         catch (error) {
@@ -36,14 +36,24 @@ export const fetchPosts = (page:number, limit = 10) => {
     }
 }
 
-export function setPostsPage(page: number):PostsAction {
-return {type: PostsActionTypes.SET_PAGES,
-    payload: page,
-}}
-
+export function setPostsPage(page: number): PostsAction {
+    return {
+        type: PostsActionTypes.SET_PAGES,
+        payload: page,
+    }
+}
 
 export const deletePost = (id: string) => {
-  return (dispatch: Dispatch<PostsAction>) => {
-    dispatch({ type: PostsActionTypes.DELETE_POST, payload: id });
-  };
+    return (dispatch: Dispatch<PostsAction>) => {
+        dispatch({ type: PostsActionTypes.DELETE_POST, payload: id });
+    };
+};
+
+export const addPost = (post: newPostType) => {
+    return (dispatch: Dispatch<PostsAction>) => {
+        dispatch({
+            type: PostsActionTypes.ADD_POST,
+            payload: post,
+        });
+    };
 };

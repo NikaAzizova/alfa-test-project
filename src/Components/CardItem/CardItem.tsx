@@ -28,13 +28,12 @@ const CardItem: React.FC = () => {
 
 
     return (
-        <div className={styles.cardContainer}>
-             {loading && (
+        <div>
+            {loading && (
                 <div className={styles.loaderWrapper}>
                     <div className={styles.loader}></div>
                 </div>
             )}
-            <h3>Card Details</h3>
             <div className={styles.cardWrapper}>
                 <div>
                     <img
@@ -45,21 +44,51 @@ const CardItem: React.FC = () => {
                 <div className={styles.cardInformation}>
                     {cardData.breeds.length > 0 && (
                         <div>
-                            <div className={styles.text}><span className={styles.subtitle}>Breed name: </span>{cardData.breeds[0].name}</div>
-                            <div className={styles.text}><span className={styles.subtitle}>Width kg: </span>{cardData.width}</div>
-                            <div className={styles.text}><span className={styles.subtitle}>Height inch: </span>{cardData.height}</div>
-                            <div className={styles.text}><span className={styles.subtitle}>Temperament: </span>{cardData.breeds[0].temperament}</div>
-                            <div className={styles.text}><span className={styles.subtitle}>Origin: </span>{cardData.breeds[0].origin}</div>
-                            <div className={styles.text}><span className={styles.subtitle}>Country code: </span>{cardData.breeds[0].country_code}</div>
-                            <div className={styles.text}><span className={styles.subtitle}>Years of life: </span>{cardData.breeds[0].life_span}</div>
-                            <div className={styles.text}><span className={styles.subtitle}>Wikipedia link: </span>
+                            <div
+                                className={styles.text}>
+                                <span className={styles.subtitle}>Breed name: </span>
+                                {cardData.breeds[0].name}
+                            </div>
+                            <div
+                                className={styles.text}>
+                                <span className={styles.subtitle}>Width kg: </span>
+                                {cardData.width}
+                            </div>
+                            <div
+                                className={styles.text}>
+                                <span className={styles.subtitle}>Height inch: </span>
+                                {cardData.height}
+                            </div>
+                            <div
+                                className={styles.text}>
+                                <span className={styles.subtitle}>Temperament: </span>
+                                {cardData.breeds[0].temperament}
+                            </div>
+                            <div
+                                className={styles.text}>
+                                <span className={styles.subtitle}>Origin: </span>
+                                {cardData.breeds[0].origin}
+                            </div>
+                            <div
+                                className={styles.text}>
+                                <span className={styles.subtitle}>Country code: </span>
+                                {cardData.breeds[0].country_code}
+                            </div>
+                            <div
+                                className={styles.text}>
+                                <span className={styles.subtitle}>Years of life: </span>
+                                {cardData.breeds[0].life_span}
+                            </div>
+                            <div
+                                className={styles.text}>
+                                <span className={styles.subtitle}>Wikipedia link: </span>
                                 <a href={cardData.breeds[0].wikipedia_url}
                                     target="_blank"
                                 >
                                     {cardData.breeds[0].wikipedia_url}
                                 </a>
                             </div>
-                            <p>Description: {cardData.breeds[0].description}</p>
+                            <div className={styles.text}><span className={styles.subtitle}> Description:</span> {cardData.breeds[0].description}</div>
                         </div>
                     )}
                 </div>

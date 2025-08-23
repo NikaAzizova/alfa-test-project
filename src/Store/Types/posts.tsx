@@ -1,19 +1,11 @@
+import { newPostType } from "./form"
+
 interface Breeds {
-    adaptability: number,
-    cfa_url: string,
+    adaptability: string,
     description: string,
     id: string,
-    life_span: string,
     name: string,
     origin: string,
-    temperament: string,
-    vcahospitals_url: string,
-    vetstreet_url: string,
-    weight: {
-        imperial: string,
-        metric: string
-    },
-    wikipedia_url: string
 }
 
 interface Posts {
@@ -21,7 +13,7 @@ interface Posts {
     id: string,
     url: string,
     width: number,
-    height: number
+    height: number,
 }
 
 export interface postsState {
@@ -39,6 +31,7 @@ export enum PostsActionTypes {
     FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',
     SET_PAGES = 'SET_PAGES',
     DELETE_POST = 'DELETE_POST',
+    ADD_POST = 'ADD_POST',
 }
 
 interface FetchPostsAction {
@@ -65,11 +58,17 @@ interface DeletePostAction {
     payload: string;
 }
 
+export interface AddPostAction {
+    type: PostsActionTypes.ADD_POST;
+    payload: newPostType;
+}
+
 export type PostsAction = FetchPostsAction
     | FetchPostsSuccessAction
     | FetchPostsErrorAction
     | SetPostsPage
-    | DeletePostAction;
+    | DeletePostAction
+    | AddPostAction;
 
 export interface ComponentProps {
     posts: Posts[];

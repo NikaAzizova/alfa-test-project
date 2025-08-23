@@ -2,15 +2,14 @@
 
 
   .descr_wrapper {
-    max-width: 200px;
+    max-width: 250px;
+    padding: 0 5px 0 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
     line-clamp: 3;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 4.5em;
     line-height: 1.2em;
+    overflow: hidden;
   }
 
   .posts {
@@ -36,8 +35,6 @@
     width: 165px;
     display: flex;
     justify-content: center;
-
-
   }
 
   .chosenBtn {
@@ -48,7 +45,6 @@
     border: 2px solid rgb(141, 100, 179);
     background-color: rgb(176, 121, 227);
     border-radius: 5px;
-
   }
 
   .choosenBtnWrapper:not(:last-child) {
@@ -91,17 +87,18 @@
     height: 200px;
   }
 
-
-
   .descriptionWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     font-family: 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 16px;
+  }
 
+  .descriptionTextWrapper{
+    max-width: 300px;
+    text-align: inherit;
   }
 
   .subtitle {
@@ -121,13 +118,11 @@
     cursor: pointer;
   }
 
-
   .loaderWrapper {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
 
   .loader {

@@ -1,4 +1,3 @@
-//import './Products.css'
 import Posts from '../../Components/Posts/Posts'
 import styles from './Products.module.css'
 import { useNavigate } from 'react-router-dom'

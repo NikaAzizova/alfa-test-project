@@ -6,8 +6,12 @@ export default function Header() {
         <div className={styles.container}>
             <div className={styles.navContainer}>
                 <nav className={styles.navigation}>
-                    <NavLink className={styles.link} to='/products'>All CARDS</NavLink>
-                    <NavLink className={styles.link} to='/createProduct'>CREATE A CARD</NavLink>
+                    <NavLink className={styles.link} to='/products'>
+                        All CARDS
+                    </NavLink>
+                    <NavLink className={styles.link} to='/createProduct'>
+                        CREATE A CARD
+                    </NavLink>
                 </nav>
             </div>
         </div>
