@@ -37,11 +37,6 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
         setChosen(false);
     }
 
-
-    console.log(posts.length);
-
-    console.log(FavoritesIDs.length);
-
     return (
         <div className={styles.posts}>
             <div
@@ -72,6 +67,7 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                 </div>
             }
             <div className={styles.postWrapper}>
+                {chosen && FavoritesIDs.length===0? <div>Ничего не выбрано</div>:<div></div>}
                 {chosen ? (
                     posts.filter(item => FavoritesIDs.includes(item.id)).map(post => (
                         <div key={post.id}>{
