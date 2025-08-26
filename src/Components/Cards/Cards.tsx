@@ -96,7 +96,7 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                                 <div className={styles.imgWrapper}>
                                     <img
                                         src={post.url}
-                                        alt="photo"
+                                        alt="cat photo"
                                         className={styles.image} />
                                 </div>
 
@@ -173,7 +173,7 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                                 <div className={styles.imgWrapper}>
                                     <img
                                         src={post.url}
-                                        alt="photo"
+                                        alt="cat photo"
                                         className={styles.image} />
                                 </div>
 
