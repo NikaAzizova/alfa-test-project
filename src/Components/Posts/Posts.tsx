@@ -36,9 +36,10 @@ const Posts: React.FC = () => {
         <div>
             <div className={styles.wrapper}>
                 {pageNums.map((num) => {
+                    const isActive = num === page;
                     return <div
                         key={num}
-                        className={styles.pageNumWrapper}
+                        className={`${styles.pageNumWrapper} ${isActive ? styles.active : ''}`}
                         onClick={() => pageNumberHandleClick(num)}
                     >
                         <div>

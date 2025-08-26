@@ -37,10 +37,10 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
         setChosen(false);
     }
 
-    if (!FavoritesIDs) {
-        <div>Данных нет</div>
-    }
 
+    console.log(posts.length);
+
+    console.log(FavoritesIDs.length);
 
     return (
         <div className={styles.posts}>
@@ -62,11 +62,15 @@ const Cards: React.FC<ComponentProps> = ({ posts, loading }) => {
                     </div>
                 )}
             </div>
-            {loading && (
+            {loading ?
                 <div className={styles.loaderWrapper}>
                     <div className={styles.loader}></div>
+                </div> :
+                posts.length === 0 && <div className={styles.emptyData}>
+                    <div>Данных нет</div>
+                    <div>(Попробуйте включить VPN)</div>
                 </div>
-            )}
+            }
             <div className={styles.postWrapper}>
                 {chosen ? (
                     posts.filter(item => FavoritesIDs.includes(item.id)).map(post => (

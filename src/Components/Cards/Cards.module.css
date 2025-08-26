@@ -18,6 +18,12 @@
     flex-direction: column;
   }
 
+  .emptyData{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 25px;
+  }
+
   .postWrapper {
     max-width: 100%;
     display: flex;
