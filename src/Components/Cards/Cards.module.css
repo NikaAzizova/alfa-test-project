@@ -24,6 +24,11 @@
     font-size: 25px;
   }
 
+  .notChoosen{
+    margin-top: 20px;
+    font-size: 25px;
+  }
+
   .postWrapper {
     max-width: 100%;
     display: flex;
